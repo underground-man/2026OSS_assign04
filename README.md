@@ -1,7 +1,7 @@
 # Assign04 - HTML Form
 
 - 이름 / 학번: 박찬 / 22300330
-- Vercel Deploy URL: (배포 후 추가 예정)
+- Vercel Deploy URL: https://2026-oss-assign04-iota.vercel.app/
 
 ## 파일 구성
 
