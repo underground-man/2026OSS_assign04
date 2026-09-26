@@ -5,470 +5,164 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML Forms (CSS)</title>
     <style>
-        /* ===== 페이지 기본 ===== */
         body {
-            font-family: "Pretendard", "Malgun Gothic", sans-serif;
-            color: #222;
-            background-color: #f1f4f9;
-            margin: 0;
-            padding: 32px 16px;
-            line-height: 1.5;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 10px;
+            font-family: sans-serif;
         }
-        h1, h2, body > p {
-            margin-left: auto;
-            margin-right: auto;
-            max-width: 720px;
+        form {
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 8px;
         }
-        h1 { color: #1d3c78; }
-        h2 { color: #2c5bb8; margin-top: 40px; }
-        hr { border: none; border-top: 1px solid #d5dbe6; margin: 24px 0; }
-        a { color: #2c5bb8; }
-
-        /* ===== Form 영역 ===== */
-        form, section {
-            max-width: 720px;
-            margin: 16px auto;
-            padding: 24px;
-            background-color: #ffffff;
-            border: 1px solid #dde3ee;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            box-sizing: border-box;
-        }
-        section form {
-            margin: 16px 0 0;
-            padding: 0;
-            border: none;
-            box-shadow: none;
-        }
-        section ul {
-            padding: 0;
-            list-style: none;
-        }
-        section li {
-            padding: 10px 12px;
-            border-bottom: 1px solid #eef1f6;
-        }
-
-        /* Promo code 입력칸 + 버튼 한 줄 배치 */
-        ul + form {
-            display: flex;
-            gap: 8px;
-        }
-        ul + form input[type="text"] {
-            margin: 0;
-        }
-        ul + form button {
-            margin: 0;
-            flex-shrink: 0;
-        }
-
-        /* ===== fieldset / legend ===== */
         fieldset {
-            border: 1px solid #c9d4e8;
-            border-radius: 10px;
-            padding: 16px 20px;
-            margin: 0 0 20px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
         legend {
-            padding: 4px 12px;
-            color: #ffffff;
-            background-color: #2c5bb8;
-            border-radius: 20px;
             font-weight: bold;
-        }
-
-        /* ===== Label ===== */
-        /* CSS 버전에서는 <br> 대신 margin으로 간격 조절 */
-        form br {
-            display: none;
         }
         label {
-            display: block;
-            margin: 12px 0 6px;
-            color: #34405a;
-            font-weight: 600;
+            color: #333;
         }
-        form p {
-            margin: 16px 0 4px;
-            color: #34405a;
-            font-weight: 600;
-        }
-        /* radio / checkbox 옆 label은 굵지 않게 */
-        input[type="radio"] + label,
-        input[type="checkbox"] + label {
+        input[type=text], input[type=date], input:not([type]), select, textarea {
             display: inline-block;
-            font-weight: normal;
-            margin: 6px 16px 6px 4px;
-            cursor: pointer;
-        }
-
-        /* ===== Input / Select / Textarea ===== */
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="date"],
-        input[type="number"],
-        input[type="tel"],
-        input[type="url"],
-        input:not([type]),
-        select,
-        textarea {
-            display: block;
             width: 100%;
-            padding: 10px 12px;
-            margin: 0 0 8px;
-            color: #222;
-            background-color: #fafbfd;
-            border: 1px solid #bfc9da;
-            border-radius: 6px;
-            font-size: 15px;
-            font-family: inherit;
-            box-sizing: border-box;
-            transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
-        }
-        textarea {
-            resize: vertical;
-        }
-        input[type="file"] {
-            display: block;
             padding: 8px;
-            border: 1px dashed #bfc9da;
-            border-radius: 6px;
-            width: 100%;
+            font-size: 14px;
+            margin: 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
             box-sizing: border-box;
         }
-        input[type="color"] {
-            width: 60px;
-            height: 36px;
-            padding: 2px;
-            border: 1px solid #bfc9da;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        input[type="range"] {
-            width: 100%;
-            accent-color: #2c5bb8;
-        }
-        input[type="radio"],
-        input[type="checkbox"] {
-            accent-color: #2c5bb8;
-            width: 16px;
-            height: 16px;
-            vertical-align: middle;
-        }
-        /* username 앞의 @ 표시 */
-        #username { display: inline-block; width: calc(100% - 40px); }
-        label[for="username"] + br + span {
-            display: inline-block;
-            width: 32px;
-            padding: 10px 0;
-            text-align: center;
-            background-color: #e9edf4;
-            border-radius: 6px;
-        }
-        small, label span {
-            color: #7a8499;
-            font-weight: normal;
-        }
-
-        /* ===== Hover / Focus 상태 ===== */
-        input:hover,
-        select:hover,
-        textarea:hover {
-            border-color: #7d9bd6;
-        }
-        input:focus,
-        select:focus,
-        textarea:focus {
+        input:focus, select:focus, textarea:focus {
+            border: 2px solid #4CAF50;
             outline: none;
-            border-color: #2c5bb8;
-            background-color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(44, 91, 184, 0.2);
         }
-        input:focus:invalid,
-        textarea:focus:invalid {
-            border-color: #d9534f;
-            box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.2);
-        }
-
-        /* ===== Button ===== */
-        input[type="submit"],
-        input[type="reset"],
-        button {
-            display: inline-block;
-            padding: 10px 24px;
-            margin: 8px 8px 0 0;
-            color: #ffffff;
-            background-color: #2c5bb8;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-        }
-        input[type="reset"] {
-            color: #34405a;
-            background-color: #e3e8f1;
-        }
-        input[type="submit"]:hover,
-        button:hover {
-            background-color: #1d3c78;
-        }
-        input[type="reset"]:hover {
-            background-color: #cfd7e5;
-        }
-        input[type="submit"]:active,
-        input[type="reset"]:active,
-        button:active {
-            transform: scale(0.97);
-        }
-        button:focus-visible,
-        input[type="submit"]:focus-visible,
-        input[type="reset"]:focus-visible {
-            outline: 3px solid rgba(44, 91, 184, 0.4);
-            outline-offset: 2px;
-        }
-        /* Checkout 최종 버튼은 가로 전체 */
-        #cc-cvv ~ button {
-            display: block;
+        input[type=submit] {
             width: 100%;
-            padding: 14px;
-            font-size: 17px;
+            padding: 12px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <h1>HTML Forms (CSS 적용)</h1>
-    <p><a href="index.html">← 메인으로</a></p>
+    <h1>HTML Forms (CSS)</h1>
+    <a href="index.html">메인으로</a>
 
-    <!-- ========== STEP 2. Form Tag 연습 ========== -->
-    <h2>1. 사용자 정보 입력 (Form Tag 연습)</h2>
-
+    <h2>1. 사용자 정보 입력</h2>
     <form action="form_ok.html" method="get">
-
         <fieldset>
             <legend>기본 정보</legend>
 
-            <!-- 1. input type="text" -->
             <label for="uname">이름</label><br>
-            <input type="text" id="uname" name="uname" placeholder="이름을 입력" required><br><br>
+            <input type="text" id="uname" name="uname"><br><br>
 
-            <!-- 2. input type="email" -->
             <label for="email">이메일</label><br>
-            <input type="email" id="email" name="email" placeholder="you@example.com"><br><br>
+            <input type="text" id="email" name="email"><br><br>
 
-            <!-- 3. input type="password" -->
-            <label for="pw">비밀번호</label><br>
-            <input type="password" id="pw" name="pw" minlength="4"><br><br>
-
-            <!-- 4. input type="date" -->
             <label for="birth">생년월일</label><br>
             <input type="date" id="birth" name="birth"><br><br>
 
-            <!-- 5. input type="radio" -->
-            <p>성별</p>
+            성별<br>
             <input type="radio" id="male" name="gender" value="male">
             <label for="male">남성</label>
             <input type="radio" id="female" name="gender" value="female">
             <label for="female">여성</label>
-            <input type="radio" id="none" name="gender" value="none" checked>
-            <label for="none">선택 안 함</label><br><br>
-
-            <!-- 6. input type="number" -->
-            <label for="age">나이</label><br>
-            <input type="number" id="age" name="age" min="1" max="120"><br>
         </fieldset>
 
         <fieldset>
-            <legend>학교 / 관심사</legend>
+            <legend>관심사</legend>
 
-            <!-- 7. select + optgroup -->
             <label for="major">전공</label><br>
             <select id="major" name="major">
-                <option value="">-- 선택 --</option>
                 <optgroup label="공학">
                     <option value="cse">컴퓨터공학</option>
                     <option value="ee">전자공학</option>
-                    <option value="me">기계공학</option>
                 </optgroup>
-                <optgroup label="인문/사회">
+                <optgroup label="인문">
                     <option value="biz">경영학</option>
                     <option value="psy">심리학</option>
                 </optgroup>
-                <optgroup label="디자인">
-                    <option value="vd">시각디자인</option>
-                </optgroup>
             </select><br><br>
 
-            <!-- 8. input type="checkbox" -->
-            <p>관심 분야 (복수 선택)</p>
+            관심 분야<br>
             <input type="checkbox" id="web" name="interest" value="web">
-            <label for="web">웹 개발</label>
+            <label for="web">웹</label>
             <input type="checkbox" id="ai" name="interest" value="ai">
-            <label for="ai">인공지능</label>
+            <label for="ai">AI</label>
             <input type="checkbox" id="game" name="interest" value="game">
-            <label for="game">게임</label>
-            <input type="checkbox" id="oss" name="interest" value="oss">
-            <label for="oss">오픈소스</label><br><br>
+            <label for="game">게임</label><br><br>
 
-            <!-- 9. input + datalist -->
-            <label for="lang">가장 좋아하는 프로그래밍 언어</label><br>
-            <input list="langs" id="lang" name="lang" placeholder="입력 또는 선택">
+            <label for="lang">좋아하는 언어</label><br>
+            <input list="langs" id="lang" name="lang">
             <datalist id="langs">
                 <option value="C">
                 <option value="Java">
                 <option value="Python">
-                <option value="JavaScript">
-                <option value="Rust">
             </datalist><br><br>
 
-            <!-- 10. input type="color" -->
-            <label for="favcolor">좋아하는 색</label><br>
-            <input type="color" id="favcolor" name="favcolor" value="#3366ff"><br><br>
+            <label for="color">좋아하는 색</label><br>
+            <input type="color" id="color" name="color"><br><br>
 
-            <!-- 11. input type="range" -->
-            <label for="skill">HTML 실력 (0~10)</label><br>
-            <input type="range" id="skill" name="skill" min="0" max="10" value="5"><br>
-        </fieldset>
-
-        <fieldset>
-            <legend>기타</legend>
-
-            <!-- 12. input type="tel" -->
-            <label for="phone">전화번호</label><br>
-            <input type="tel" id="phone" name="phone" placeholder="010-1234-5678"
-                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"><br><br>
-
-            <!-- 13. input type="url" -->
-            <label for="homepage">GitHub 주소</label><br>
-            <input type="url" id="homepage" name="homepage" placeholder="https://github.com/..."><br><br>
-
-            <!-- 14. input type="file" -->
-            <label for="photo">프로필 사진</label><br>
-            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
-
-            <!-- 15. textarea -->
             <label for="intro">자기소개</label><br>
-            <textarea id="intro" name="intro" rows="5" cols="40" placeholder="간단한 자기소개를 입력하세요"></textarea><br><br>
-
-            <!-- 16. input type="hidden" -->
-            <input type="hidden" name="formType" value="profile">
-
-            <!-- 17. 동의 checkbox -->
-            <input type="checkbox" id="agree" name="agree" value="yes" required>
-            <label for="agree">개인정보 수집에 동의합니다</label>
+            <textarea id="intro" name="intro" rows="4" cols="40"></textarea>
         </fieldset>
         <br>
-
         <input type="submit" value="제출">
-        <input type="reset" value="초기화">
     </form>
 
-    <hr>
-
-    <!-- ========== STEP 3. Form Clone Coding ========== -->
-    <h2>2. Checkout Form (Clone Coding)</h2>
-    <p>
-        원본 URL:
-        <a href="https://getbootstrap.com/docs/5.2/examples/checkout/" target="_blank">
-            https://getbootstrap.com/docs/5.2/examples/checkout/
-        </a>
-    </p>
-    <p>디자인보다 Form 구조와 입력 요소를 중심으로 클론 코딩했습니다.</p>
-
-    <section>
-        <h3>Your cart <small>(3)</small></h3>
+    <!-- Clone Coding 원본 URL: https://getbootstrap.com/docs/5.2/examples/checkout/ -->
+    <h2>2. 주문하기</h2>
+    <form action="form_ok.html" method="get">
+        <h3>장바구니 (3)</h3>
         <ul>
-            <li>Product name - Brief description - $12</li>
-            <li>Second product - Brief description - $8</li>
-            <li>Third item - Brief description - $5</li>
-            <li>Promo code - EXAMPLECODE - −$5</li>
-            <li><strong>Total (USD) - $20</strong></li>
+            <li>상품 1 - 12,000원</li>
+            <li>상품 2 - 8,000원</li>
+            <li>상품 3 - 5,000원</li>
+            <li>합계 - 25,000원</li>
         </ul>
 
-        <form action="form_ok.html" method="get">
-            <input type="text" name="promo" placeholder="Promo code">
-            <button type="submit">Redeem</button>
-        </form>
-    </section>
+        <h3>배송지 정보</h3>
+        <label for="name">이름</label><br>
+        <input type="text" id="name" name="name" required><br><br>
 
-    <section>
-        <h3>Billing address</h3>
-        <form action="form_ok.html" method="get">
+        <label for="address">주소</label><br>
+        <input type="text" id="address" name="address" required><br><br>
 
-            <label for="firstName">First name</label><br>
-            <input type="text" id="firstName" name="firstName" required><br><br>
+        <label for="city">지역</label><br>
+        <select id="city" name="city">
+            <option value="">선택하세요</option>
+            <option>서울</option>
+            <option>경기</option>
+            <option>경북</option>
+        </select><br><br>
 
-            <label for="lastName">Last name</label><br>
-            <input type="text" id="lastName" name="lastName" required><br><br>
+        <label for="zip">우편번호</label><br>
+        <input type="text" id="zip" name="zip"><br><br>
 
-            <label for="username">Username</label><br>
-            <span>@</span>
-            <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+        <input type="checkbox" id="save" name="save">
+        <label for="save">다음에도 이 정보 사용</label>
 
-            <label for="coEmail">Email <span>(Optional)</span></label><br>
-            <input type="email" id="coEmail" name="coEmail" placeholder="you@example.com"><br><br>
+        <h3>결제 방법</h3>
+        <input type="radio" id="card" name="pay" value="card" checked>
+        <label for="card">신용카드</label>
+        <input type="radio" id="bank" name="pay" value="bank">
+        <label for="bank">계좌이체</label><br><br>
 
-            <label for="address">Address</label><br>
-            <input type="text" id="address" name="address" placeholder="1234 Main St" required><br><br>
+        <label for="cardno">카드 번호</label><br>
+        <input type="text" id="cardno" name="cardno"><br><br>
 
-            <label for="address2">Address 2 <span>(Optional)</span></label><br>
-            <input type="text" id="address2" name="address2" placeholder="Apartment or suite"><br><br>
-
-            <label for="country">Country</label><br>
-            <select id="country" name="country" required>
-                <option value="">Choose...</option>
-                <option>United States</option>
-                <option>Korea</option>
-            </select><br><br>
-
-            <label for="state">State</label><br>
-            <select id="state" name="state" required>
-                <option value="">Choose...</option>
-                <option>California</option>
-                <option>Seoul</option>
-            </select><br><br>
-
-            <label for="zip">Zip</label><br>
-            <input type="text" id="zip" name="zip" required><br>
-
-            <hr>
-
-            <input type="checkbox" id="same-address" name="sameAddress">
-            <label for="same-address">Shipping address is the same as my billing address</label><br>
-
-            <input type="checkbox" id="save-info" name="saveInfo">
-            <label for="save-info">Save this information for next time</label>
-
-            <hr>
-
-            <h3>Payment</h3>
-            <input type="radio" id="credit" name="paymentMethod" value="credit" checked required>
-            <label for="credit">Credit card</label><br>
-            <input type="radio" id="debit" name="paymentMethod" value="debit" required>
-            <label for="debit">Debit card</label><br>
-            <input type="radio" id="paypal" name="paymentMethod" value="paypal" required>
-            <label for="paypal">PayPal</label><br><br>
-
-            <label for="cc-name">Name on card</label><br>
-            <input type="text" id="cc-name" name="ccName" required><br>
-            <small>Full name as displayed on card</small><br><br>
-
-            <label for="cc-number">Credit card number</label><br>
-            <input type="text" id="cc-number" name="ccNumber" inputmode="numeric" required><br><br>
-
-            <label for="cc-expiration">Expiration</label><br>
-            <input type="text" id="cc-expiration" name="ccExpiration" placeholder="MM/YY" required><br><br>
-
-            <label for="cc-cvv">CVV</label><br>
-            <input type="text" id="cc-cvv" name="ccCvv" inputmode="numeric" maxlength="4" required><br>
-
-            <hr>
-
-            <button type="submit">Continue to checkout</button>
-        </form>
-    </section>
+        <input type="submit" value="주문하기">
+    </form>
 </body>
 </html>
