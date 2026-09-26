@@ -1,29 +1,240 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>HTML Forms</title>
 </head>
 <body>
-    <h1>
-        HTML forms
-    </h1>
+    <h1>HTML Forms</h1>
+    <p><a href="index.html">← 메인으로</a></p>
 
-    <p>사용자 정보 입력</p>
+    <!-- ========== STEP 2. Form Tag 연습 ========== -->
+    <h2>1. 사용자 정보 입력 (Form Tag 연습)</h2>
 
-    <form action= "form_ok.html" method = "post">
+    <form action="form_ok.html" method="get">
 
-        <label  for="uname">
-            이름
-        </label><br>
-        <input type="text" id="uname" name="uname" placeholder="이름을 입력"><br>
+        <fieldset>
+            <legend>기본 정보</legend>
 
-        <label for="email">이메일:</label><br>
-        <input type="text" id = "emaii" name="email"><br>
+            <!-- 1. input type="text" -->
+            <label for="uname">이름</label><br>
+            <input type="text" id="uname" name="uname" placeholder="이름을 입력" required><br><br>
+
+            <!-- 2. input type="email" -->
+            <label for="email">이메일</label><br>
+            <input type="email" id="email" name="email" placeholder="you@example.com"><br><br>
+
+            <!-- 3. input type="password" -->
+            <label for="pw">비밀번호</label><br>
+            <input type="password" id="pw" name="pw" minlength="4"><br><br>
+
+            <!-- 4. input type="date" -->
+            <label for="birth">생년월일</label><br>
+            <input type="date" id="birth" name="birth"><br><br>
+
+            <!-- 5. input type="radio" -->
+            <p>성별</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">남성</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">여성</label>
+            <input type="radio" id="none" name="gender" value="none" checked>
+            <label for="none">선택 안 함</label><br><br>
+
+            <!-- 6. input type="number" -->
+            <label for="age">나이</label><br>
+            <input type="number" id="age" name="age" min="1" max="120"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>학교 / 관심사</legend>
+
+            <!-- 7. select + optgroup -->
+            <label for="major">전공</label><br>
+            <select id="major" name="major">
+                <option value="">-- 선택 --</option>
+                <optgroup label="공학">
+                    <option value="cse">컴퓨터공학</option>
+                    <option value="ee">전자공학</option>
+                    <option value="me">기계공학</option>
+                </optgroup>
+                <optgroup label="인문/사회">
+                    <option value="biz">경영학</option>
+                    <option value="psy">심리학</option>
+                </optgroup>
+                <optgroup label="디자인">
+                    <option value="vd">시각디자인</option>
+                </optgroup>
+            </select><br><br>
+
+            <!-- 8. input type="checkbox" -->
+            <p>관심 분야 (복수 선택)</p>
+            <input type="checkbox" id="web" name="interest" value="web">
+            <label for="web">웹 개발</label>
+            <input type="checkbox" id="ai" name="interest" value="ai">
+            <label for="ai">인공지능</label>
+            <input type="checkbox" id="game" name="interest" value="game">
+            <label for="game">게임</label>
+            <input type="checkbox" id="oss" name="interest" value="oss">
+            <label for="oss">오픈소스</label><br><br>
+
+            <!-- 9. input + datalist -->
+            <label for="lang">가장 좋아하는 프로그래밍 언어</label><br>
+            <input list="langs" id="lang" name="lang" placeholder="입력 또는 선택">
+            <datalist id="langs">
+                <option value="C">
+                <option value="Java">
+                <option value="Python">
+                <option value="JavaScript">
+                <option value="Rust">
+            </datalist><br><br>
+
+            <!-- 10. input type="color" -->
+            <label for="favcolor">좋아하는 색</label><br>
+            <input type="color" id="favcolor" name="favcolor" value="#3366ff"><br><br>
+
+            <!-- 11. input type="range" -->
+            <label for="skill">HTML 실력 (0~10)</label><br>
+            <input type="range" id="skill" name="skill" min="0" max="10" value="5"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>기타</legend>
+
+            <!-- 12. input type="tel" -->
+            <label for="phone">전화번호</label><br>
+            <input type="tel" id="phone" name="phone" placeholder="010-1234-5678"
+                   pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"><br><br>
+
+            <!-- 13. input type="url" -->
+            <label for="homepage">GitHub 주소</label><br>
+            <input type="url" id="homepage" name="homepage" placeholder="https://github.com/..."><br><br>
+
+            <!-- 14. input type="file" -->
+            <label for="photo">프로필 사진</label><br>
+            <input type="file" id="photo" name="photo" accept="image/*"><br><br>
+
+            <!-- 15. textarea -->
+            <label for="intro">자기소개</label><br>
+            <textarea id="intro" name="intro" rows="5" cols="40" placeholder="간단한 자기소개를 입력하세요"></textarea><br><br>
+
+            <!-- 16. input type="hidden" -->
+            <input type="hidden" name="formType" value="profile">
+
+            <!-- 17. 동의 checkbox -->
+            <input type="checkbox" id="agree" name="agree" value="yes" required>
+            <label for="agree">개인정보 수집에 동의합니다</label>
+        </fieldset>
         <br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="제출">
+        <input type="reset" value="초기화">
     </form>
+
+    <hr>
+
+    <!-- ========== STEP 3. Form Clone Coding ========== -->
+    <h2>2. Checkout Form (Clone Coding)</h2>
+    <p>
+        원본 URL:
+        <a href="https://getbootstrap.com/docs/5.2/examples/checkout/" target="_blank">
+            https://getbootstrap.com/docs/5.2/examples/checkout/
+        </a>
+    </p>
+    <p>디자인보다 Form 구조와 입력 요소를 중심으로 클론 코딩했습니다.</p>
+
+    <section>
+        <h3>Your cart <small>(3)</small></h3>
+        <ul>
+            <li>Product name - Brief description - $12</li>
+            <li>Second product - Brief description - $8</li>
+            <li>Third item - Brief description - $5</li>
+            <li>Promo code - EXAMPLECODE - −$5</li>
+            <li><strong>Total (USD) - $20</strong></li>
+        </ul>
+
+        <form action="form_ok.html" method="get">
+            <input type="text" name="promo" placeholder="Promo code">
+            <button type="submit">Redeem</button>
+        </form>
+    </section>
+
+    <section>
+        <h3>Billing address</h3>
+        <form action="form_ok.html" method="get">
+
+            <label for="firstName">First name</label><br>
+            <input type="text" id="firstName" name="firstName" required><br><br>
+
+            <label for="lastName">Last name</label><br>
+            <input type="text" id="lastName" name="lastName" required><br><br>
+
+            <label for="username">Username</label><br>
+            <span>@</span>
+            <input type="text" id="username" name="username" placeholder="Username" required><br><br>
+
+            <label for="coEmail">Email <span>(Optional)</span></label><br>
+            <input type="email" id="coEmail" name="coEmail" placeholder="you@example.com"><br><br>
+
+            <label for="address">Address</label><br>
+            <input type="text" id="address" name="address" placeholder="1234 Main St" required><br><br>
+
+            <label for="address2">Address 2 <span>(Optional)</span></label><br>
+            <input type="text" id="address2" name="address2" placeholder="Apartment or suite"><br><br>
+
+            <label for="country">Country</label><br>
+            <select id="country" name="country" required>
+                <option value="">Choose...</option>
+                <option>United States</option>
+                <option>Korea</option>
+            </select><br><br>
+
+            <label for="state">State</label><br>
+            <select id="state" name="state" required>
+                <option value="">Choose...</option>
+                <option>California</option>
+                <option>Seoul</option>
+            </select><br><br>
+
+            <label for="zip">Zip</label><br>
+            <input type="text" id="zip" name="zip" required><br>
+
+            <hr>
+
+            <input type="checkbox" id="same-address" name="sameAddress">
+            <label for="same-address">Shipping address is the same as my billing address</label><br>
+
+            <input type="checkbox" id="save-info" name="saveInfo">
+            <label for="save-info">Save this information for next time</label>
+
+            <hr>
+
+            <h3>Payment</h3>
+            <input type="radio" id="credit" name="paymentMethod" value="credit" checked required>
+            <label for="credit">Credit card</label><br>
+            <input type="radio" id="debit" name="paymentMethod" value="debit" required>
+            <label for="debit">Debit card</label><br>
+            <input type="radio" id="paypal" name="paymentMethod" value="paypal" required>
+            <label for="paypal">PayPal</label><br><br>
+
+            <label for="cc-name">Name on card</label><br>
+            <input type="text" id="cc-name" name="ccName" required><br>
+            <small>Full name as displayed on card</small><br><br>
+
+            <label for="cc-number">Credit card number</label><br>
+            <input type="text" id="cc-number" name="ccNumber" inputmode="numeric" required><br><br>
+
+            <label for="cc-expiration">Expiration</label><br>
+            <input type="text" id="cc-expiration" name="ccExpiration" placeholder="MM/YY" required><br><br>
+
+            <label for="cc-cvv">CVV</label><br>
+            <input type="text" id="cc-cvv" name="ccCvv" inputmode="numeric" maxlength="4" required><br>
+
+            <hr>
+
+            <button type="submit">Continue to checkout</button>
+        </form>
+    </section>
 </body>
 </html>
